@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@geist-ui/core": "^2.3.8",
+    "lucide-react": "^0.314.0",
     "next": "14.1.0",
     "next-react-svg": "1.2.0",
     "react": "^18",
