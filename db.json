@@ -1,6 +1,6 @@
 {
   "users": [
-    { "id": "1", "title": "Felippe" },
-    { "id": "2", "title": "Marllow" }
+    { "id": "1", "name": "Felippe" },
+    { "id": "2", "name": "Marllow" }
   ]
 }
