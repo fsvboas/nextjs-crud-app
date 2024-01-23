@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import TanstackQuery from './libs/tanstack-query'
+import TanstackQueryProvider from './libs/tanstack-query/tanstack-query-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <TanstackQuery>
+        <TanstackQueryProvider>
           <div>{children}</div>
-        </TanstackQuery>
+        </TanstackQueryProvider>
       </body>
     </html>
   )
