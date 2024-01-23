@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mock": "json-server --watch ./db.json --port 3333"
+    "server": "json-server --watch ./db.json --port 3333"
   },
   "dependencies": {
     "@geist-ui/core": "^2.3.8",
