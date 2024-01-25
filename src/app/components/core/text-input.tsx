@@ -9,9 +9,13 @@ interface TextInputProps extends React.ComponentPropsWithRef<typeof GUIInput> {
 }
 const TextInput = ({ error, ...props }: TextInputProps) => {
   return (
-    <Column className="space-y-2">
+    <Column>
       <Text p>{props.label}</Text>
-      <GUIInput crossOrigin type={Boolean(error) ? 'error' : 'secondary'} />
+      <GUIInput
+        {...props}
+        height={1.1}
+        type={Boolean(error) ? 'error' : 'default'}
+      />
       <Show when={Boolean(error)} fallback={<Row className="h-[1px]" />}>
         <Row className="h-[1px]">
           <Text span className="text-danger-700 text-sm -mt-1">
