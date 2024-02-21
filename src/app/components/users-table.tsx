@@ -12,11 +12,11 @@ interface UsersTableProps {
 const UsersTable = ({ users }: UsersTableProps) => {
   return (
     <Table data={users}>
-      <Table.Column prop="name" label="Nome" />
-      <Table.Column prop="birthdate" label="Data de nascimento" />
-      <Table.Column prop="phone" label="Telefone" />
-      <Table.Column prop="city" label="Cidade" />
-      <Table.Column prop="state" label="Estado" />
+      <Table.Column prop="name" label="Name" />
+      <Table.Column prop="birthdate" label="Date of birth" />
+      <Table.Column prop="phone" label="Phone" />
+      <Table.Column prop="city" label="City" />
+      <Table.Column prop="state" label="State" />
     </Table>
   )
 }
