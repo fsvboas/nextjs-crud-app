@@ -10,7 +10,6 @@ interface TextInputProps extends React.ComponentPropsWithRef<typeof GUIInput> {
 const TextInput = ({ error, ...props }: TextInputProps) => {
   return (
     <Column>
-      <Text p>{props.label}</Text>
       <GUIInput
         {...props}
         height={1.1}
