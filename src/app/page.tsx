@@ -2,7 +2,7 @@
 
 import { Text } from '@geist-ui/core'
 import { useQuery } from '@tanstack/react-query'
-import { UserPlus } from 'lucide-react'
+import { Eye, Pencil, UserPlus } from 'lucide-react'
 import React from 'react'
 import Button from './components/core/button'
 import Column from './components/core/column'
@@ -21,8 +21,10 @@ export default function Home() {
   const users = data || []
 
   const [openModal, setOpenModal] = React.useState<boolean>(false)
+  const [editable, setEditable] = React.useState<boolean>(false)
 
   const handleModalState = () => setOpenModal(prevState => !prevState)
+  const handleEditableState = () => setEditable(prevState => !prevState)
 
   return (
     <main className="flex min-h-screen flex-col items-center p-24 space-y-6">
@@ -39,14 +41,22 @@ export default function Home() {
           <Column className="space-y-6">
             <Row className="space-x-4">
               <FiltersSection />
-              <Button
-                onClick={handleModalState}
-                iconRight={<UserPlus />}
-                type="success"
-                auto
-              />
+              <Row className="space-x-2">
+                <Button
+                  onClick={handleModalState}
+                  iconRight={<UserPlus />}
+                  type="success"
+                  auto
+                />
+                <Button
+                  onClick={handleEditableState}
+                  iconRight={!editable ? <Pencil /> : <Eye />}
+                  type="default"
+                  auto
+                />
+              </Row>
             </Row>
-            <UsersTable users={users} />
+            <UsersTable users={users} editable={editable} />
           </Column>
           <CreateUserModal visible={openModal} onClose={handleModalState} />
         </React.Fragment>
