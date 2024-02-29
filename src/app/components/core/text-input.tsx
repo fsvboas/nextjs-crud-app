@@ -27,7 +27,6 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     },
     ref,
   ) => {
-    console.log('to aq', error)
     return (
       <Column>
         <Show when={Boolean(label)}>
