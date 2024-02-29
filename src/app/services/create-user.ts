@@ -1,10 +1,5 @@
-import api from '../libs/axios/api'
+import { api } from '../libs/axios'
 import { UserType } from '../types/user-type'
-
-type CreateUserResponseType = {
-  id: string
-  name: string
-}[]
 
 interface CreateUserProps {
   user: UserType
@@ -12,7 +7,7 @@ interface CreateUserProps {
 
 async function createUser({ user }: CreateUserProps) {
   try {
-    const { data } = await api.post<CreateUserResponseType>('/users', user)
+    const { data } = await api.post('/users', user)
     return data
   } catch (error) {
     throw error

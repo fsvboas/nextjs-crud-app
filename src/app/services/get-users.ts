@@ -1,4 +1,4 @@
-import api from '../libs/axios/api'
+import { api } from '../libs/axios'
 
 type GetUsersResponseType = {
   id: string
