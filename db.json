@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Felippe",
+      "birthdate": "2001-06-05",
+      "phone": "555-1234",
+      "city": "São Paulo",
+      "state": "SP"
+    },
+    {
+      "id": "2",
+      "name": "Júlia",
+      "birthdate": "1985-08-22",
+      "phone": "555-5678",
+      "city": "São Paulo",
+      "state": "SP"
+    },
+    {
+      "id": "3",
+      "name": "Isabela",
+      "birthdate": "1992-03-10",
+      "phone": "555-9101",
+      "city": "Belo Horizonte",
+      "state": "MG"
+    },
+    {
+      "id": "4",
+      "name": "Lucas",
+      "birthdate": "1988-11-05",
+      "phone": "555-1122",
+      "city": "Porto Alegre",
+      "state": "RS"
+    },
+    {
+      "id": "5",
+      "name": "Camila",
+      "birthdate": "1995-02-18",
+      "phone": "555-3344",
+      "city": "Rio de Janeiro",
+      "state": "RJ"
+    },
+    {
+      "id": "6",
+      "name": "Roberto",
+      "birthdate": "1980-09-30",
+      "phone": "555-5566",
+      "city": "Recife",
+      "state": "PE"
+    },
+    {
+      "id": "7",
+      "name": "Amanda",
+      "birthdate": "1983-07-12",
+      "phone": "555-7788",
+      "city": "São Paulo",
+      "state": "SP"
+    },
+    {
+      "id": "8",
+      "name": "Juliana",
+      "birthdate": "1998-04-25",
+      "phone": "555-9900",
+      "city": "Curitiba",
+      "state": "PR"
+    },
+    {
+      "id": "9",
+      "name": "Rafael",
+      "birthdate": "1991-06-28",
+      "phone": "555-1122",
+      "city": "Fortaleza",
+      "state": "CE"
+    },
+    {
+      "id": "10",
+      "name": "Fernanda",
+      "birthdate": "1987-12-08",
+      "phone": "555-3344",
+      "city": "Manaus",
+      "state": "AM"
+    }
+  ]
+}
