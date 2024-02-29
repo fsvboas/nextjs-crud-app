@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@tanstack/react-query": "^5.17.19",
     "@tanstack/react-query-devtools": "^5.17.21",
+    "@types/react-input-mask": "^3.0.5",
     "axios": "^1.6.5",
     "json-server": "^1.0.0-alpha.22",
     "lucide-react": "^0.314.0",
@@ -22,7 +23,9 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.49.3",
-    "react-toastify": "^10.0.4"
+    "react-input-mask": "^3.0.0-alpha.2",
+    "react-toastify": "^10.0.4",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.17.20",
