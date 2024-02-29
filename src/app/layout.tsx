@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import TanstackQueryProvider from './libs/tanstack-query/tanstack-query-provider'
+import { ToastProvider } from './libs/react-tostify'
+import { TanstackQueryProvider } from './libs/tanstack-query'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <TanstackQueryProvider>
-          <div>{children}</div>
+          <ToastProvider>
+            <div>{children}</div>
+          </ToastProvider>
         </TanstackQueryProvider>
       </body>
     </html>
