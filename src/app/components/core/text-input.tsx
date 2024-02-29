@@ -1,40 +1,44 @@
 import { Text } from '@geist-ui/core'
 import { forwardRef } from 'react'
 import Column from './column'
-import Row from './row'
 import Show from './show'
 
 interface TextInputProps {
+  label?: string
   placeholder?: string
   minLength?: number
   maxLength?: number
-  required?: boolean
   disabled?: boolean
-  className?: string
   error?: string
+  className?: string
 }
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
+      label,
       placeholder,
       minLength,
       maxLength,
       disabled,
-      className,
       error,
+      className,
       ...inputProps
     },
     ref,
   ) => {
+    console.log('to aq', error)
     return (
       <Column>
+        <Show when={Boolean(label)}>
+          <Text span className="text-sm pb-1">
+            {label}
+          </Text>
+        </Show>
         <input
           className={`${className} transition-all w-full h-10
         rounded-md px-4 py-2 text-sm border ${
-          error
-            ? '!border-danger-500 focus:ring-danger-100 focus:border-danger-300'
-            : ''
+          error ? 'border-red-500 focus:ring-red-100 focus:border-red-300' : ''
         }`}
           type="text"
           placeholder={placeholder}
@@ -44,12 +48,10 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           ref={ref}
           {...inputProps}
         />
-        <Show when={Boolean(error)} fallback={<Row className="h-[1px]" />}>
-          <Row className="h-[1px]">
-            <Text span className="text-danger-700 text-sm -mt-1">
-              {error}
-            </Text>
-          </Row>
+        <Show when={Boolean(error)}>
+          <Text span className="!text-red-500 text-xs mb-1 !h-[1px]">
+            {error}
+          </Text>
         </Show>
       </Column>
     )
