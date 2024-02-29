@@ -1,11 +1,9 @@
 import { Button, Table } from '@geist-ui/core'
 import { Pencil, Trash2 } from 'lucide-react'
+import React from 'react'
+import { UserType } from '../types/user-type'
 import Row from './core/row'
-
-type UserType = {
-  id: string
-  name: string
-}
+import DeleteConfirmationModal from './delete-confirmation-modal'
 
 interface UsersTableProps {
   users: UserType[]
@@ -13,7 +11,21 @@ interface UsersTableProps {
 }
 
 const UsersTable = ({ users, editable }: UsersTableProps) => {
-  const renderSettingsButtons = () => {
+  const [userToDelete, setUserToDelete] = React.useState<UserType>({
+    id: '',
+    name: '',
+    birthdate: '',
+    phone: '',
+    city: '',
+    state: '',
+  })
+  const [openModal, setOpenModal] = React.useState<boolean>(false)
+
+  const handleModalState = () => {
+    setOpenModal(prevState => !prevState)
+  }
+
+  const renderActionsButtons = (value: any, rowData: any, index: number) => {
     return (
       <Row className="space-x-2">
         <Button
@@ -24,7 +36,10 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
           auto
         />
         <Button
-          onClick={() => null}
+          onClick={() => {
+            setUserToDelete(rowData)
+            handleModalState()
+          }}
           disabled={editable === false}
           iconRight={<Trash2 />}
           type="error"
@@ -44,7 +59,12 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
       <Table.Column
         prop="actions"
         label="Actions"
-        render={renderSettingsButtons}
+        render={renderActionsButtons}
+      />
+      <DeleteConfirmationModal
+        user={userToDelete}
+        visible={openModal}
+        onClose={handleModalState}
       />
     </Table>
   )
