@@ -24,6 +24,8 @@ export default function Home() {
   const [openModal, setOpenModal] = React.useState<boolean>(false)
   const [editable, setEditable] = React.useState<boolean>(false)
 
+  const handleEditableState = () => setEditable(prevState => !prevState)
+
   return (
     <main className="flex min-h-screen flex-col items-center p-24 space-y-6">
       <Text h1 b font="24px">
@@ -51,7 +53,7 @@ export default function Home() {
                   auto
                 />
                 <Button
-                  onClick={() => setEditable(true)}
+                  onClick={handleEditableState}
                   placeholder={''}
                   iconRight={!editable ? <Pencil /> : <Eye />}
                   type="default"
