@@ -7,15 +7,18 @@ import { toast } from 'react-toastify'
 import { z } from 'zod'
 import { queryClient } from '../libs/tanstack-query'
 import createUser from '../services/create-user'
+import updateUser from '../services/update-user'
 import { UserType } from '../types/user-type'
 import Column from './core/column'
 import MaskInput from './core/mask-input'
 import Row from './core/row'
+import Show from './core/show'
 import TextInput from './core/text-input'
 
-interface CreateUserModalProps {
+interface UserFormModalProps {
   visible: boolean
   onClose: () => void
+  userToEdit?: UserType
 }
 
 const createUserSchema = z.object({
@@ -26,20 +29,24 @@ const createUserSchema = z.object({
   state: z.string(),
 })
 
-const CreateUserModal = ({ visible, onClose }: CreateUserModalProps) => {
+const UserFormModal = ({
+  visible,
+  onClose,
+  userToEdit,
+}: UserFormModalProps) => {
   const {
     register,
     handleSubmit,
-    reset,
+    setValue,
     formState: { errors },
   } = useForm<UserType>({
     resolver: zodResolver(createUserSchema),
     defaultValues: {
-      name: '',
-      birthdate: '',
-      phone: '',
-      city: '',
-      state: '',
+      name: userToEdit?.name || '',
+      birthdate: userToEdit?.birthdate || '',
+      phone: userToEdit?.phone || '',
+      city: userToEdit?.city || '',
+      state: userToEdit?.state || '',
     },
   })
 
@@ -54,19 +61,67 @@ const CreateUserModal = ({ visible, onClose }: CreateUserModalProps) => {
       toast.error('Oops! Error creating user.')
     },
   })
+  const { mutate: update, isPending: pendingUpdateUser } = useMutation({
+    mutationFn: updateUser,
+    onSuccess: () => {
+      toast.success('User updated successfully!')
+      queryClient?.invalidateQueries({ queryKey: ['users'] })
+      onClose()
+    },
+    onError: () => {
+      toast.error('Oops! Error updating user.')
+    },
+  })
 
   const handleCreateUser = (user: UserType) => {
     create({ user })
   }
 
+  const handleUpdateUser = (user: UserType) => {
+    if (!userToEdit) return
+
+    const payload = {
+      id: userToEdit.id,
+      name: user.name,
+      birthdate: user.birthdate,
+      phone: user.phone,
+      city: user.city,
+      state: user.state,
+    }
+
+    update({ user: payload })
+  }
+
+  const handleSubmitForm = Boolean(userToEdit)
+    ? handleSubmit(handleUpdateUser)
+    : handleSubmit(handleCreateUser)
+
+  const isEdit = Boolean(userToEdit)
+
+  const username = userToEdit?.name
+
   React.useEffect(() => {
-    reset()
-  }, [visible])
+    if (userToEdit) {
+      setValue('name', userToEdit.name || '')
+      setValue('birthdate', userToEdit.birthdate || '')
+      setValue('phone', userToEdit.phone || '')
+      setValue('city', userToEdit.city || '')
+      setValue('state', userToEdit.state || '')
+    }
+  }, [userToEdit, setValue])
 
   return (
-    <form id="create-user-form" onSubmit={handleSubmit(handleCreateUser)}>
-      <Modal visible={visible} onClose={onClose}>
-        <Modal.Title>Create a new user</Modal.Title>
+    <Modal visible={visible} onClose={onClose}>
+      <form id="user-form" onSubmit={handleSubmitForm}>
+        <Show
+          when={isEdit}
+          fallback={<Modal.Title>Create a new user</Modal.Title>}
+        >
+          <Column>
+            <Modal.Title>Update user</Modal.Title>
+            <Modal.Subtitle>{username}</Modal.Subtitle>
+          </Column>
+        </Show>
         <Modal.Content>
           <Column className="w-full space-y-2">
             <TextInput
@@ -107,24 +162,35 @@ const CreateUserModal = ({ visible, onClose }: CreateUserModalProps) => {
             </Row>
           </Column>
         </Modal.Content>
-        <Modal.Action placeholder={''} passive onClick={onClose}>
-          <Text p font="14px">
-            Cancel
-          </Text>
-        </Modal.Action>
-        <Modal.Action
-          placeholder={''}
-          form="create-user-form"
-          htmlType="submit"
-          loading={pendingCreateUser}
-        >
-          <Text p font="14px">
-            Create
-          </Text>
-        </Modal.Action>
-      </Modal>
-    </form>
+        <Row>
+          <Modal.Action placeholder={''} passive onClick={onClose}>
+            <Text p font="14px">
+              Cancel
+            </Text>
+          </Modal.Action>
+          <Modal.Action
+            placeholder={''}
+            form="user-form"
+            htmlType="submit"
+            loading={pendingCreateUser || pendingUpdateUser}
+          >
+            <Show
+              when={isEdit}
+              fallback={
+                <Text p font="14px" className="!text-green-500 font-bold">
+                  Create
+                </Text>
+              }
+            >
+              <Text p font="14px" className="!text-orange-500 font-bold">
+                Update
+              </Text>
+            </Show>
+          </Modal.Action>
+        </Row>
+      </form>
+    </Modal>
   )
 }
 
-export default CreateUserModal
+export default UserFormModal

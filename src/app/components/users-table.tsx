@@ -4,6 +4,7 @@ import React from 'react'
 import { UserType } from '../types/user-type'
 import Row from './core/row'
 import DeleteConfirmationModal from './delete-confirmation-modal'
+import UserFormModal from './user-form-modal'
 
 interface UsersTableProps {
   users: UserType[]
@@ -11,7 +12,7 @@ interface UsersTableProps {
 }
 
 const UsersTable = ({ users, editable }: UsersTableProps) => {
-  const [userToDelete, setUserToDelete] = React.useState<UserType>({
+  const [selectedUser, setSelectedUser] = React.useState<UserType>({
     id: '',
     name: '',
     birthdate: '',
@@ -19,17 +20,19 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
     city: '',
     state: '',
   })
-  const [openModal, setOpenModal] = React.useState<boolean>(false)
-
-  const handleModalState = () => {
-    setOpenModal(prevState => !prevState)
-  }
+  const [openUserFormModal, setOpenUserFormModal] =
+    React.useState<boolean>(false)
+  const [openDeleteConfirmationModal, setOpenDeleteConfirmationModal] =
+    React.useState<boolean>(false)
 
   const renderActionsButtons = (value: any, rowData: any, index: number) => {
     return (
       <Row className="space-x-2">
         <Button
-          onClick={() => null}
+          onClick={() => {
+            setSelectedUser(rowData)
+            setOpenUserFormModal(true)
+          }}
           disabled={editable === false}
           iconRight={<Pencil />}
           type="default"
@@ -37,8 +40,8 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
         />
         <Button
           onClick={() => {
-            setUserToDelete(rowData)
-            handleModalState()
+            setSelectedUser(rowData)
+            setOpenDeleteConfirmationModal(true)
           }}
           disabled={editable === false}
           iconRight={<Trash2 />}
@@ -62,9 +65,14 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
         render={renderActionsButtons}
       />
       <DeleteConfirmationModal
-        user={userToDelete}
-        visible={openModal}
-        onClose={handleModalState}
+        visible={openDeleteConfirmationModal}
+        onClose={() => setOpenDeleteConfirmationModal(false)}
+        user={selectedUser as UserType}
+      />
+      <UserFormModal
+        visible={openUserFormModal}
+        onClose={() => setOpenUserFormModal(false)}
+        userToEdit={selectedUser}
       />
     </Table>
   )
