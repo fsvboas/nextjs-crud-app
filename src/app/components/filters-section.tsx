@@ -1,32 +1,48 @@
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import Row from './core/row'
 import SearchInput from './core/search-input'
 
-interface FiltersSectionProps {
-  setFilters: {
-    setSearchByName: React.Dispatch<React.SetStateAction<string>>
-    setSearchByDateOfBirth: React.Dispatch<React.SetStateAction<string>>
-    setSearchByPhone: React.Dispatch<React.SetStateAction<string>>
-    setSearchByCity: React.Dispatch<React.SetStateAction<string>>
-    setSearchByState: React.Dispatch<React.SetStateAction<string>>
-  }
-}
+const FiltersSection = () => {
+  const router = useRouter()
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
 
-const FiltersSection = ({ setFilters }: FiltersSectionProps) => {
+  const handleFilter = (field: string, value: any) => {
+    const searchParam = new URLSearchParams(searchParams)
+    if (value?.trim() === '') {
+      searchParam.delete(field)
+    } else {
+      searchParam.set(field, value)
+    }
+    router.push(`${pathname}?${searchParam.toString()}`)
+  }
+
   return (
     <Row className="space-x-2">
-      <SearchInput placeholder="Name" onChange={setFilters?.setSearchByName} />
+      <SearchInput
+        placeholder="Name"
+        onChange={event => handleFilter('name', event.target.value)}
+        defaultValue={searchParams.get('name') || ''}
+      />
       <SearchInput
         placeholder="Date of birth"
-        onChange={setFilters?.setSearchByDateOfBirth}
+        onChange={event => handleFilter('birthdate', event.target.value)}
+        defaultValue={searchParams.get('birthdate') || ''}
       />
       <SearchInput
         placeholder="Phone"
-        onChange={setFilters?.setSearchByPhone}
+        onChange={event => handleFilter('phone', event.target.value)}
+        defaultValue={searchParams.get('phone') || ''}
       />
-      <SearchInput placeholder="City" onChange={setFilters?.setSearchByCity} />
+      <SearchInput
+        placeholder="City"
+        onChange={event => handleFilter('city', event.target.value)}
+        defaultValue={searchParams.get('city') || ''}
+      />
       <SearchInput
         placeholder="State"
-        onChange={setFilters?.setSearchByState}
+        onChange={event => handleFilter('state', event.target.value)}
+        defaultValue={searchParams.get('state') || ''}
       />
     </Row>
   )

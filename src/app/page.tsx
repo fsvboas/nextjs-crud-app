@@ -13,13 +13,17 @@ import UserFormModal from './components/user-form-modal'
 import UsersTable from './components/users-table'
 import getUsers from './services/get-users'
 
-export default function Home() {
-  const [searchByName, setSearchByName] = React.useState('')
-  const [searchByDateOfBirth, setSearchByDateOfBirth] = React.useState('')
-  const [searchByPhone, setSearchByPhone] = React.useState('')
-  const [searchByCity, setSearchByCity] = React.useState('')
-  const [searchByState, setSearchByState] = React.useState('')
+interface HomeProps {
+  searchParams: {
+    name: string
+    birthdate: string
+    phone: string
+    city: string
+    state: string
+  }
+}
 
+export default function Home({ searchParams }: HomeProps) {
   const { data, isLoading } = useQuery({
     queryFn: () => getUsers(),
     queryKey: ['users'],
@@ -27,24 +31,24 @@ export default function Home() {
 
   const users = data || []
 
-  const filteredUsers = users?.filter(
-    user =>
-      user?.name?.toLowerCase()?.includes(searchByName?.toLowerCase()) &&
-      user?.birthdate
-        ?.toLowerCase()
-        ?.includes(searchByDateOfBirth?.toLowerCase()) &&
-      user?.phone?.toLowerCase()?.includes(searchByPhone?.toLowerCase()) &&
-      user?.city?.toLowerCase()?.includes(searchByCity?.toLowerCase()) &&
-      user?.state?.toLowerCase()?.includes(searchByState?.toLowerCase()),
-  )
+  const filteredUsers = users?.filter(user => {
+    if (!searchParams) return
 
-  const setFilters = {
-    setSearchByName,
-    setSearchByDateOfBirth,
-    setSearchByPhone,
-    setSearchByCity,
-    setSearchByState,
-  }
+    return (
+      (!searchParams.name ||
+        user.name?.toLowerCase().includes(searchParams.name.toLowerCase())) &&
+      (!searchParams.birthdate ||
+        user.birthdate
+          ?.toLowerCase()
+          .includes(searchParams.birthdate.toLowerCase())) &&
+      (!searchParams.phone ||
+        user.phone?.toLowerCase().includes(searchParams.phone.toLowerCase())) &&
+      (!searchParams.city ||
+        user.city?.toLowerCase().includes(searchParams.city.toLowerCase())) &&
+      (!searchParams.state ||
+        user.state?.toLowerCase().includes(searchParams.state.toLowerCase()))
+    )
+  })
 
   const [openModal, setOpenModal] = React.useState<boolean>(false)
   const [editable, setEditable] = React.useState<boolean>(false)
@@ -56,7 +60,6 @@ export default function Home() {
       <Text h1 b font="24px">
         NextJS Crud Application
       </Text>
-      {/* TO-DO: Replace this text by a skeleton */}
       <Show
         when={!isLoading}
         fallback={
@@ -68,7 +71,7 @@ export default function Home() {
         <React.Fragment>
           <Column className="space-y-6">
             <Row className="space-x-4">
-              <FiltersSection setFilters={setFilters} />
+              <FiltersSection />
               <Row className="space-x-2">
                 <Button
                   onClick={() => setOpenModal(true)}

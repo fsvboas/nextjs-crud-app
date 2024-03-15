@@ -7,11 +7,15 @@ interface SearchInputProps {
   label?: string
   placeholder?: string
   className?: string
-  onChange?: (value: string) => void
+  onChange?: (value: any) => void
+  defaultValue?: string
 }
 
 const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
-  ({ label, placeholder, className, onChange, ...inputProps }, ref) => {
+  (
+    { label, placeholder, className, onChange, defaultValue, ...inputProps },
+    ref,
+  ) => {
     return (
       <Column>
         <Show when={Boolean(label)}>
@@ -25,7 +29,8 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
           type="text"
           placeholder={placeholder}
           ref={ref}
-          onChange={event => onChange?.(event.target.value)}
+          onChange={onChange}
+          defaultValue={defaultValue}
           {...inputProps}
         />
       </Column>
