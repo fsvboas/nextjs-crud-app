@@ -11,6 +11,7 @@ interface TextInputProps {
   disabled?: boolean
   error?: string
   className?: string
+  onChange?: (value: string) => void
 }
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -23,6 +24,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       disabled,
       error,
       className,
+      onChange,
       ...inputProps
     },
     ref,
@@ -45,6 +47,7 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
           maxLength={maxLength}
           disabled={disabled}
           ref={ref}
+          onChange={event => onChange?.(event.target.value)}
           {...inputProps}
         />
         <Show when={Boolean(error)}>

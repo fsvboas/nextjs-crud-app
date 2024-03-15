@@ -1,16 +1,27 @@
-import Button from './core/button'
 import Row from './core/row'
 import TextInput from './core/text-input'
 
-const FiltersSection = () => {
+interface FiltersSectionProps {
+  setFilters: {
+    setSearchByName: React.Dispatch<React.SetStateAction<string>>
+    setSearchByDateOfBirth: React.Dispatch<React.SetStateAction<string>>
+    setSearchByPhone: React.Dispatch<React.SetStateAction<string>>
+    setSearchByCity: React.Dispatch<React.SetStateAction<string>>
+    setSearchByState: React.Dispatch<React.SetStateAction<string>>
+  }
+}
+
+const FiltersSection = ({ setFilters }: FiltersSectionProps) => {
   return (
     <Row className="space-x-2">
-      <TextInput placeholder="Name" />
-      <TextInput placeholder="Date of birth" />
-      <TextInput placeholder="Phone" />
-      <TextInput placeholder="City" />
-      <TextInput placeholder="State" />
-      <Button type="secondary-light">Filter</Button>
+      <TextInput placeholder="Name" onChange={setFilters?.setSearchByName} />
+      <TextInput
+        placeholder="Date of birth"
+        onChange={setFilters?.setSearchByDateOfBirth}
+      />
+      <TextInput placeholder="Phone" onChange={setFilters?.setSearchByPhone} />
+      <TextInput placeholder="City" onChange={setFilters?.setSearchByCity} />
+      <TextInput placeholder="State" onChange={setFilters?.setSearchByState} />
     </Row>
   )
 }

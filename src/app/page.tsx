@@ -14,12 +14,37 @@ import UsersTable from './components/users-table'
 import getUsers from './services/get-users'
 
 export default function Home() {
+  const [searchByName, setSearchByName] = React.useState('')
+  const [searchByDateOfBirth, setSearchByDateOfBirth] = React.useState('')
+  const [searchByPhone, setSearchByPhone] = React.useState('')
+  const [searchByCity, setSearchByCity] = React.useState('')
+  const [searchByState, setSearchByState] = React.useState('')
+
   const { data, isLoading } = useQuery({
     queryFn: () => getUsers(),
     queryKey: ['users'],
   })
 
   const users = data || []
+
+  const filteredUsers = users?.filter(
+    user =>
+      user?.name?.toLowerCase()?.includes(searchByName?.toLowerCase()) &&
+      user?.birthdate
+        ?.toLowerCase()
+        ?.includes(searchByDateOfBirth?.toLowerCase()) &&
+      user?.phone?.toLowerCase()?.includes(searchByPhone?.toLowerCase()) &&
+      user?.city?.toLowerCase()?.includes(searchByCity?.toLowerCase()) &&
+      user?.state?.toLowerCase()?.includes(searchByState?.toLowerCase()),
+  )
+
+  const setFilters = {
+    setSearchByName,
+    setSearchByDateOfBirth,
+    setSearchByPhone,
+    setSearchByCity,
+    setSearchByState,
+  }
 
   const [openModal, setOpenModal] = React.useState<boolean>(false)
   const [editable, setEditable] = React.useState<boolean>(false)
@@ -43,7 +68,7 @@ export default function Home() {
         <React.Fragment>
           <Column className="space-y-6">
             <Row className="space-x-4">
-              <FiltersSection />
+              <FiltersSection setFilters={setFilters} />
               <Row className="space-x-2">
                 <Button
                   onClick={() => setOpenModal(true)}
@@ -61,7 +86,7 @@ export default function Home() {
                 />
               </Row>
             </Row>
-            <UsersTable users={users} editable={editable} />
+            <UsersTable users={filteredUsers} editable={editable} />
           </Column>
           <UserFormModal
             visible={openModal}
