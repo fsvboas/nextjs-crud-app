@@ -1,5 +1,5 @@
 import Row from './core/row'
-import TextInput from './core/text-input'
+import SearchInput from './core/search-input'
 
 interface FiltersSectionProps {
   setFilters: {
@@ -14,14 +14,20 @@ interface FiltersSectionProps {
 const FiltersSection = ({ setFilters }: FiltersSectionProps) => {
   return (
     <Row className="space-x-2">
-      <TextInput placeholder="Name" onChange={setFilters?.setSearchByName} />
-      <TextInput
+      <SearchInput placeholder="Name" onChange={setFilters?.setSearchByName} />
+      <SearchInput
         placeholder="Date of birth"
         onChange={setFilters?.setSearchByDateOfBirth}
       />
-      <TextInput placeholder="Phone" onChange={setFilters?.setSearchByPhone} />
-      <TextInput placeholder="City" onChange={setFilters?.setSearchByCity} />
-      <TextInput placeholder="State" onChange={setFilters?.setSearchByState} />
+      <SearchInput
+        placeholder="Phone"
+        onChange={setFilters?.setSearchByPhone}
+      />
+      <SearchInput placeholder="City" onChange={setFilters?.setSearchByCity} />
+      <SearchInput
+        placeholder="State"
+        onChange={setFilters?.setSearchByState}
+      />
     </Row>
   )
 }
