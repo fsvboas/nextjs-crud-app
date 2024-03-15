@@ -4,6 +4,7 @@ import { toast } from 'react-toastify'
 import { queryClient } from '../libs/tanstack-query'
 import deleteUser from '../services/delete-user'
 import { UserType } from '../types/user-type'
+import Row from './core/row'
 
 interface DeleteConfirmationModalProps {
   user: UserType
@@ -43,20 +44,22 @@ const DeleteConfirmationModal = ({
           Are you sure you want to delete this user permanently?
         </Text>
       </Modal.Content>
-      <Modal.Action placeholder={''} passive onClick={onClose}>
-        <Text p font="14px">
-          Cancel
-        </Text>
-      </Modal.Action>
-      <Modal.Action
-        placeholder={''}
-        loading={pendingCreateUser}
-        onClick={() => handleDeleteUser(user)}
-      >
-        <Text p font="14px" className="!text-red-500 font-bold">
-          Delete
-        </Text>
-      </Modal.Action>
+      <Row>
+        <Modal.Action placeholder={''} passive onClick={onClose}>
+          <Text p font="14px">
+            Cancel
+          </Text>
+        </Modal.Action>
+        <Modal.Action
+          placeholder={''}
+          loading={pendingCreateUser}
+          onClick={() => handleDeleteUser(user)}
+        >
+          <Text p font="14px" className="!text-red-500 font-bold">
+            Delete
+          </Text>
+        </Modal.Action>
+      </Row>
     </Modal>
   )
 }
