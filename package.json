@@ -16,6 +16,7 @@
     "@tanstack/react-query-devtools": "^5.17.21",
     "@types/react-input-mask": "^3.0.5",
     "axios": "^1.6.5",
+    "date-fns": "^3.5.0",
     "json-server": "^1.0.0-alpha.22",
     "lucide-react": "^0.314.0",
     "next": "14.1.0",

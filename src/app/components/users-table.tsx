@@ -1,6 +1,8 @@
 import { Button, Table } from '@geist-ui/core'
+import { TableColumnRender } from '@geist-ui/core/esm/table'
 import { Pencil, Trash2 } from 'lucide-react'
 import React from 'react'
+import DateFormatter from '../helpers/date-formatter'
 import { UserType } from '../types/user-type'
 import Row from './core/row'
 import DeleteConfirmationModal from './delete-confirmation-modal'
@@ -25,7 +27,11 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
   const [openDeleteConfirmationModal, setOpenDeleteConfirmationModal] =
     React.useState<boolean>(false)
 
-  const renderActionsButtons = (value: any, rowData: any, index: number) => {
+  const renderActionsButtons: TableColumnRender<any> = (
+    value,
+    rowData,
+    index,
+  ) => {
     return (
       <Row className="space-x-2">
         <Button
@@ -52,10 +58,22 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
     )
   }
 
+  const renderBirthdateHandler: TableColumnRender<UserType> = (
+    value,
+    rowData,
+    index,
+  ) => {
+    return <DateFormatter>{rowData.birthdate}</DateFormatter>
+  }
+
   return (
     <Table data={users}>
       <Table.Column prop="name" label="Name" width={250} />
-      <Table.Column prop="birthdate" label="Date of birth" />
+      <Table.Column
+        prop="birthdate"
+        label="Date of birth"
+        render={renderBirthdateHandler}
+      />
       <Table.Column prop="phone" label="Phone" />
       <Table.Column prop="city" label="City" />
       <Table.Column prop="state" label="State" />
