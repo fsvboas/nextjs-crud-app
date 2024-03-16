@@ -4,7 +4,7 @@
       "id": "1",
       "name": "Felippe",
       "birthdate": "2001-06-05",
-      "phone": "555-1234",
+      "phone": "11991668762",
       "city": "São Paulo",
       "state": "SP"
     },
@@ -12,7 +12,7 @@
       "id": "2",
       "name": "Júlia",
       "birthdate": "1985-08-22",
-      "phone": "555-5678",
+      "phone": "11999851290",
       "city": "São Paulo",
       "state": "SP"
     },
@@ -20,7 +20,7 @@
       "id": "3",
       "name": "Isabela",
       "birthdate": "1992-03-10",
-      "phone": "555-9101",
+      "phone": "31988440723",
       "city": "Belo Horizonte",
       "state": "MG"
     },
@@ -28,7 +28,7 @@
       "id": "4",
       "name": "Lucas",
       "birthdate": "1988-11-05",
-      "phone": "555-1122",
+      "phone": "51997773461",
       "city": "Porto Alegre",
       "state": "RS"
     },
@@ -36,7 +36,7 @@
       "id": "5",
       "name": "Camila",
       "birthdate": "1995-02-18",
-      "phone": "555-3344",
+      "phone": "21920234041",
       "city": "Rio de Janeiro",
       "state": "RJ"
     },
@@ -44,7 +44,7 @@
       "id": "6",
       "name": "Roberto",
       "birthdate": "1980-09-30",
-      "phone": "555-5566",
+      "phone": "87979189445",
       "city": "Recife",
       "state": "PE"
     },
@@ -52,7 +52,7 @@
       "id": "7",
       "name": "Amanda",
       "birthdate": "1983-07-12",
-      "phone": "555-7788",
+      "phone": "11994982121",
       "city": "São Paulo",
       "state": "SP"
     },
@@ -60,7 +60,7 @@
       "id": "8",
       "name": "Juliana",
       "birthdate": "1998-04-25",
-      "phone": "555-9900",
+      "phone": "41996440701",
       "city": "Curitiba",
       "state": "PR"
     },
@@ -68,7 +68,7 @@
       "id": "9",
       "name": "Rafael",
       "birthdate": "1991-06-28",
-      "phone": "555-1122",
+      "phone": "85990917762",
       "city": "Fortaleza",
       "state": "CE"
     },
@@ -76,7 +76,7 @@
       "id": "10",
       "name": "Fernanda",
       "birthdate": "1987-12-08",
-      "phone": "555-3344",
+      "phone": "92999288614",
       "city": "Manaus",
       "state": "AM"
     }
