@@ -1,9 +1,12 @@
 import { Text } from '@geist-ui/core'
 import { forwardRef } from 'react'
+import ReactInputMask from 'react-input-mask'
 import Column from './column'
 import Show from './show'
 
-interface TextInputProps {
+interface MaskInputProps {
+  mask: string
+  maskPlaceholder?: string
   label?: string
   placeholder?: string
   minLength?: number
@@ -13,9 +16,11 @@ interface TextInputProps {
   className?: string
 }
 
-const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+const MaskInput = forwardRef<ReactInputMask, MaskInputProps>(
   (
     {
+      mask,
+      maskPlaceholder = '',
       label,
       placeholder,
       minLength,
@@ -34,13 +39,15 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             {label}
           </Text>
         </Show>
-        <input
+        <ReactInputMask
           className={`${className} transition-all w-full h-10
         rounded-md px-4 py-2 text-sm border ${
           error ? 'border-red-500 focus:ring-red-100 focus:border-red-300' : ''
         }`}
-          type="text"
+          mask={mask}
+          maskPlaceholder={maskPlaceholder}
           placeholder={placeholder}
+          alwaysShowMask={false}
           minLength={minLength}
           maxLength={maxLength}
           disabled={disabled}
@@ -57,4 +64,4 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   },
 )
 
-export default TextInput
+export default MaskInput
