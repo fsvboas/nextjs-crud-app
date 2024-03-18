@@ -25,7 +25,7 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
         </Show>
         <input
           className={`${className} transition-all w-full h-10
-        rounded-md px-4 py-2 text-sm border `}
+        rounded-md px-4 py-2 text-sm border border-[#EAEAEA] hover:border-black`}
           type="text"
           placeholder={placeholder}
           ref={ref}
