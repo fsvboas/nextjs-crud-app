@@ -14,6 +14,8 @@ interface MaskInputProps {
   disabled?: boolean
   error?: string
   className?: string
+  value?: string
+  onChange?: (value: any) => void
 }
 
 const MaskInput = forwardRef<ReactInputMask, MaskInputProps>(
@@ -28,6 +30,8 @@ const MaskInput = forwardRef<ReactInputMask, MaskInputProps>(
       disabled,
       error,
       className,
+      value,
+      onChange,
       ...inputProps
     },
     ref,
@@ -52,6 +56,8 @@ const MaskInput = forwardRef<ReactInputMask, MaskInputProps>(
           maxLength={maxLength}
           disabled={disabled}
           ref={ref}
+          value={value}
+          onChange={onChange}
           {...inputProps}
         />
         <Show when={Boolean(error)}>

@@ -1,6 +1,8 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { states } from '../utils/states'
 import Row from './core/row'
 import SearchInput from './core/search-input'
+import SelectInput from './core/select-input'
 
 const FiltersSection = () => {
   const router = useRouter()
@@ -16,6 +18,16 @@ const FiltersSection = () => {
     }
     router.push(`${pathname}?${searchParam.toString()}`)
   }
+
+  const brazilianStates = states?.map(state => ({
+    value: state,
+    label: state,
+  }))
+
+  const stateOptions = [
+    { value: '', label: 'Remover Filtro' },
+    ...brazilianStates,
+  ]
 
   return (
     <Row className="space-x-2">
@@ -39,10 +51,11 @@ const FiltersSection = () => {
         onChange={event => handleFilter('city', event.target.value)}
         defaultValue={searchParams.get('city') || ''}
       />
-      <SearchInput
+      <SelectInput
         placeholder="State"
-        onChange={event => handleFilter('state', event.target.value)}
+        onChange={value => handleFilter('state', value)}
         defaultValue={searchParams.get('state') || ''}
+        options={stateOptions}
       />
     </Row>
   )
