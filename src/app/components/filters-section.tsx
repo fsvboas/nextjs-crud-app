@@ -19,10 +19,15 @@ const FiltersSection = () => {
     router.push(`${pathname}?${searchParam.toString()}`)
   }
 
-  const stateOptions = states?.map(state => ({
+  const brazilianStates = states?.map(state => ({
     value: state,
     label: state,
   }))
+
+  const stateOptions = [
+    { value: '', label: 'Remover Filtro' },
+    ...brazilianStates,
+  ]
 
   return (
     <Row className="space-x-2">

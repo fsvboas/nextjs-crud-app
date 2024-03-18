@@ -30,7 +30,7 @@ const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
           placeholder={placeholder}
           onChange={onChange}
           ref={ref}
-          defaultValue={defaultValue}
+          initialValue={defaultValue}
           clearable
           className={`${className} !transition-all !w-full !h-10
           !rounded-md !px-4 !py-2 !text-sm relative`}
