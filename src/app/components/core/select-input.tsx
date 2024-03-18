@@ -12,13 +12,17 @@ interface SelectInputProps {
   label?: string
   placeholder?: string
   className?: string
-  onChange?: (value: any) => void
+  value?: string
   defaultValue?: string
+  onChange?: (value: any) => void
   options: SelectInputOptionsType[]
 }
 
 const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
-  ({ label, placeholder, className, onChange, defaultValue, options }, ref) => {
+  (
+    { label, placeholder, className, value, defaultValue, onChange, options },
+    ref,
+  ) => {
     return (
       <Column>
         <Show when={Boolean(label)}>
@@ -31,6 +35,7 @@ const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
           onChange={onChange}
           ref={ref}
           initialValue={defaultValue}
+          value={value}
           clearable
           className={`${className} !transition-all !w-full !h-10
           !rounded-md !px-4 !py-2 !text-sm relative`}

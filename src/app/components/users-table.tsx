@@ -2,7 +2,6 @@ import { Button, Table, Text } from '@geist-ui/core'
 import { TableColumnRender } from '@geist-ui/core/esm/table'
 import { Pencil, Trash2 } from 'lucide-react'
 import React from 'react'
-import DateFormatter from '../helpers/date-formatter'
 import PhoneFormatter from '../helpers/phone-formatter'
 import { UserType } from '../types/user-type'
 import Row from './core/row'
@@ -60,13 +59,6 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
     )
   }
 
-  const renderBirthdateHandler: TableColumnRender<UserType> = (
-    value,
-    rowData,
-    index,
-  ) => {
-    return <DateFormatter>{rowData.birthdate}</DateFormatter>
-  }
   const renderPhoneHandler: TableColumnRender<UserType> = (
     value,
     rowData,
@@ -88,11 +80,7 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
         }
       >
         <Table.Column prop="name" label="Name" width={250} />
-        <Table.Column
-          prop="birthdate"
-          label="Date of birth"
-          render={renderBirthdateHandler}
-        />
+        <Table.Column prop="birthdate" label="Date of birth" />
         <Table.Column prop="phone" label="Phone" render={renderPhoneHandler} />
         <Table.Column prop="city" label="City" />
         <Table.Column prop="state" label="State" />

@@ -2,16 +2,18 @@ import { Modal, Text } from '@geist-ui/core'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import React from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { z } from 'zod'
 import { queryClient } from '../libs/tanstack-query'
 import createUser from '../services/create-user'
 import updateUser from '../services/update-user'
 import { UserType } from '../types/user-type'
+import { states } from '../utils/states'
 import Column from './core/column'
 import MaskInput from './core/mask-input'
 import Row from './core/row'
+import SelectInput from './core/select-input'
 import Show from './core/show'
 import TextInput from './core/text-input'
 
@@ -35,7 +37,7 @@ const UserFormModal = ({
   userToEdit,
 }: UserFormModalProps) => {
   const {
-    register,
+    control,
     handleSubmit,
     setValue,
     formState: { errors },
@@ -100,6 +102,11 @@ const UserFormModal = ({
 
   const username = userToEdit?.name
 
+  const stateOptions = states?.map(state => ({
+    value: state,
+    label: state,
+  }))
+
   React.useEffect(() => {
     if (userToEdit) {
       setValue('name', userToEdit.name || '')
@@ -124,40 +131,77 @@ const UserFormModal = ({
         </Show>
         <Modal.Content>
           <Column className="w-full space-y-2">
-            <TextInput
-              label="Name"
-              placeholder="Felippe Vilas Boas"
-              className="w-full"
-              {...register('name')}
-              error={errors.name && 'Please enter a name'}
+            <Controller
+              control={control}
+              name="name"
+              render={({ field: { onChange, value } }) => (
+                <TextInput
+                  label="Name"
+                  placeholder="Felippe Vilas Boas"
+                  className="w-full"
+                  value={value}
+                  onChange={onChange}
+                  error={errors.name && 'Please enter a name'}
+                />
+              )}
             />
+
             <Row className="space-x-2">
-              <MaskInput
-                label="Birthdate"
-                mask="9999/99/99"
-                placeholder="YYYY-MM-DD"
-                {...register('birthdate')}
-                error={errors.birthdate && 'Please enter a valid birthdate'}
+              <Controller
+                control={control}
+                name="birthdate"
+                render={({ field: { onChange, value } }) => (
+                  <MaskInput
+                    label="Birthdate"
+                    mask="9999/99/99"
+                    placeholder="YYYY/MM/DD"
+                    value={value}
+                    onChange={onChange}
+                    error={errors.birthdate && 'Please enter a valid birthdate'}
+                  />
+                )}
               />
-              <MaskInput
-                label="Phone"
-                mask="(99) 99999-9999"
-                placeholder="(99) 99999-9999"
-                {...register('phone')}
-                error={errors.phone && 'Please enter a valid phone'}
+
+              <Controller
+                control={control}
+                name="phone"
+                render={({ field: { onChange, value } }) => (
+                  <MaskInput
+                    label="Phone"
+                    mask="(99) 99999-9999"
+                    placeholder="(99) 99999-9999"
+                    value={value}
+                    onChange={onChange}
+                    error={errors.phone && 'Please enter a valid phone'}
+                  />
+                )}
               />
             </Row>
             <Row className="space-x-2">
-              <TextInput
-                label="City"
-                placeholder="São Paulo"
-                {...register('city')}
+              <Controller
+                control={control}
+                name="city"
+                render={({ field: { onChange, value } }) => (
+                  <TextInput
+                    label="City"
+                    placeholder="São Paulo"
+                    value={value}
+                    onChange={onChange}
+                  />
+                )}
               />
-              <TextInput
-                label="State"
-                placeholder="SP"
-                className="w-full max-w-[80px]"
-                {...register('state')}
+              <Controller
+                control={control}
+                name="state"
+                render={({ field: { onChange, value } }) => (
+                  <SelectInput
+                    label="State"
+                    placeholder="SP"
+                    value={value}
+                    onChange={onChange}
+                    options={stateOptions}
+                  />
+                )}
               />
             </Row>
           </Column>
