@@ -2,19 +2,17 @@ import { Button, Table, Text } from '@geist-ui/core'
 import { TableColumnRender } from '@geist-ui/core/esm/table'
 import { Pencil, Trash2 } from 'lucide-react'
 import React from 'react'
-import PhoneFormatter from '../helpers/phone-formatter'
 import { UserType } from '../types/user-type'
-import Row from './core/row'
-import Show from './core/show'
-import DeleteConfirmationModal from './delete-confirmation-modal'
-import UserFormModal from './user-form-modal'
+import { PhoneFormatter } from '../utils'
+import { DeleteConfirmationModal, UserFormModal } from './'
+import { Row, Show } from './core/'
 
 interface UsersTableProps {
   users: UserType[]
   editable?: boolean
 }
 
-const UsersTable = ({ users, editable }: UsersTableProps) => {
+export const UsersTable = ({ users, editable }: UsersTableProps) => {
   const [selectedUser, setSelectedUser] = React.useState<UserType>({
     id: '',
     name: '',
@@ -36,6 +34,7 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
     return (
       <Row className="space-x-2">
         <Button
+          placeholder={null}
           onClick={() => {
             setSelectedUser(rowData)
             setOpenUserFormModal(true)
@@ -46,6 +45,7 @@ const UsersTable = ({ users, editable }: UsersTableProps) => {
           auto
         />
         <Button
+          placeholder={null}
           onClick={() => {
             setSelectedUser(rowData)
             setOpenDeleteConfirmationModal(true)

@@ -1,7 +1,6 @@
 import { Text } from '@geist-ui/core'
 import { forwardRef } from 'react'
-import Column from './column'
-import Show from './show'
+import { Column, Show } from './'
 
 interface TextInputProps {
   label?: string
@@ -15,7 +14,7 @@ interface TextInputProps {
   onChange?: (value: any) => void
 }
 
-const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
       label,
@@ -62,5 +61,3 @@ const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     )
   },
 )
-
-export default TextInput

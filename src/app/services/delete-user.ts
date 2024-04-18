@@ -4,7 +4,7 @@ interface DeleteUserProps {
   userId: string
 }
 
-async function deleteUser({ userId }: DeleteUserProps) {
+export async function deleteUser({ userId }: DeleteUserProps) {
   try {
     const { data } = await api.delete(`/users/${userId}`)
     return data
@@ -12,5 +12,3 @@ async function deleteUser({ userId }: DeleteUserProps) {
     throw error
   }
 }
-
-export default deleteUser

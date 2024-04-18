@@ -1,10 +1,8 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { states } from '../utils/states'
-import Row from './core/row'
-import SearchInput from './core/search-input'
-import SelectInput from './core/select-input'
+import { Row, SearchInput, SelectInput } from './core'
 
-const FiltersSection = () => {
+export const FiltersSection = () => {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -60,5 +58,3 @@ const FiltersSection = () => {
     </Row>
   )
 }
-
-export default FiltersSection

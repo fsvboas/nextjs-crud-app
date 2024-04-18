@@ -2,9 +2,9 @@ import { Modal, Text } from '@geist-ui/core'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { queryClient } from '../libs/tanstack-query'
-import deleteUser from '../services/delete-user'
+import { deleteUser } from '../services'
 import { UserType } from '../types/user-type'
-import Row from './core/row'
+import { Row } from './core'
 
 interface DeleteConfirmationModalProps {
   user: UserType
@@ -12,7 +12,7 @@ interface DeleteConfirmationModalProps {
   onClose: () => void
 }
 
-const DeleteConfirmationModal = ({
+export const DeleteConfirmationModal = ({
   user,
   visible,
   onClose,
@@ -63,5 +63,3 @@ const DeleteConfirmationModal = ({
     </Modal>
   )
 }
-
-export default DeleteConfirmationModal

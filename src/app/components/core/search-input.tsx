@@ -1,7 +1,6 @@
 import { Text } from '@geist-ui/core'
 import { forwardRef } from 'react'
-import Column from './column'
-import Show from './show'
+import { Column, Show } from './'
 
 interface SearchInputProps {
   label?: string
@@ -11,7 +10,7 @@ interface SearchInputProps {
   defaultValue?: string
 }
 
-const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
+export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
   (
     { label, placeholder, className, onChange, defaultValue, ...inputProps },
     ref,
@@ -37,5 +36,3 @@ const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
     )
   },
 )
-
-export default SearchInput

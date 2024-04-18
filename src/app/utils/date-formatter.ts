@@ -10,10 +10,8 @@ const dateFormatter = (dateAsString: string) => {
   return isValid(date) ? formattedDate : undefined
 }
 
-const DateFormatter = ({ children }: DateFormatterProps) => {
+export const DateFormatter = ({ children }: DateFormatterProps) => {
   const date = parseISO(children)
   if (!isValid(date)) return null
   return dateFormatter(children)
 }
-
-export default DateFormatter

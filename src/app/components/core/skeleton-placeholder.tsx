@@ -1,4 +1,4 @@
-import classNames from '../../helpers/class-names'
+import { classNames } from '../../utils'
 
 interface SkeletonPlaceholderProps {
   width?: number | string
@@ -9,7 +9,7 @@ interface SkeletonPlaceholderProps {
   color?: string
 }
 
-const SkeletonPlaceholder = ({
+export const SkeletonPlaceholder = ({
   width,
   height,
   variant,
@@ -34,5 +34,3 @@ const SkeletonPlaceholder = ({
     />
   )
 }
-
-export default SkeletonPlaceholder

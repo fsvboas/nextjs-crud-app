@@ -1,7 +1,6 @@
 import { Select, Text } from '@geist-ui/core'
 import { forwardRef } from 'react'
-import Column from './column'
-import Show from './show'
+import { Column, Show } from './'
 
 type SelectInputOptionsType = {
   value: string
@@ -18,7 +17,7 @@ interface SelectInputProps {
   options: SelectInputOptionsType[]
 }
 
-const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
+export const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
   (
     { label, placeholder, className, value, defaultValue, onChange, options },
     ref,
@@ -50,5 +49,3 @@ const SelectInput = forwardRef<HTMLInputElement, SelectInputProps>(
     )
   },
 )
-
-export default SelectInput

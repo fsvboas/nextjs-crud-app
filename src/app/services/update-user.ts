@@ -5,7 +5,7 @@ interface UpdateUserProps {
   user: UserType
 }
 
-async function updateUser({ user }: UpdateUserProps) {
+export async function updateUser({ user }: UpdateUserProps) {
   try {
     const { data } = await api.patch(`/users/${user.id}`, user)
     return data
@@ -13,5 +13,3 @@ async function updateUser({ user }: UpdateUserProps) {
     throw error
   }
 }
-
-export default updateUser

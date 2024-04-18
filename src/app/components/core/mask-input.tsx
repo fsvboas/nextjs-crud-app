@@ -1,8 +1,7 @@
 import { Text } from '@geist-ui/core'
 import { forwardRef } from 'react'
 import ReactInputMask from 'react-input-mask'
-import Column from './column'
-import Show from './show'
+import { Column, Show } from './'
 
 interface MaskInputProps {
   mask: string
@@ -18,7 +17,7 @@ interface MaskInputProps {
   onChange?: (value: any) => void
 }
 
-const MaskInput = forwardRef<ReactInputMask, MaskInputProps>(
+export const MaskInput = forwardRef<ReactInputMask, MaskInputProps>(
   (
     {
       mask,
@@ -69,5 +68,3 @@ const MaskInput = forwardRef<ReactInputMask, MaskInputProps>(
     )
   },
 )
-
-export default MaskInput

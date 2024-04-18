@@ -6,16 +6,10 @@ import { Controller, useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { z } from 'zod'
 import { queryClient } from '../libs/tanstack-query'
-import createUser from '../services/create-user'
-import updateUser from '../services/update-user'
+import { createUser, updateUser } from '../services'
 import { UserType } from '../types/user-type'
 import { states } from '../utils/states'
-import Column from './core/column'
-import MaskInput from './core/mask-input'
-import Row from './core/row'
-import SelectInput from './core/select-input'
-import Show from './core/show'
-import TextInput from './core/text-input'
+import { Column, MaskInput, Row, SelectInput, Show, TextInput } from './core/'
 
 interface UserFormModalProps {
   visible: boolean
@@ -31,7 +25,7 @@ const createUserSchema = z.object({
   state: z.string(),
 })
 
-const UserFormModal = ({
+export const UserFormModal = ({
   visible,
   onClose,
   userToEdit,
@@ -236,5 +230,3 @@ const UserFormModal = ({
     </Modal>
   )
 }
-
-export default UserFormModal

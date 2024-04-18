@@ -1,8 +1,9 @@
 import React from 'react'
-import classNames from '../../helpers/class-names'
+import { classNames } from '../../utils'
 
 interface ColumnProps extends React.HTMLAttributes<HTMLDivElement> {}
-const Column: React.FC<ColumnProps> = React.forwardRef<
+
+export const Column: React.FC<ColumnProps> = React.forwardRef<
   HTMLInputElement,
   ColumnProps
 >(({ className, children, ...props }, ref) => {
@@ -18,5 +19,3 @@ const Column: React.FC<ColumnProps> = React.forwardRef<
 })
 
 Column.displayName = 'Column'
-
-export default Column

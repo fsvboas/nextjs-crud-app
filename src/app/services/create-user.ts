@@ -5,7 +5,7 @@ interface CreateUserProps {
   user: UserType
 }
 
-async function createUser({ user }: CreateUserProps) {
+export async function createUser({ user }: CreateUserProps) {
   try {
     const { data } = await api.post('/users', user)
     return data
@@ -13,5 +13,3 @@ async function createUser({ user }: CreateUserProps) {
     throw error
   }
 }
-
-export default createUser
