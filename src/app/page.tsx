@@ -54,7 +54,7 @@ export default function Home({ searchParams }: HomeProps) {
   return (
     <main className="flex min-h-screen flex-col items-center p-24 space-y-6">
       <Text h1 b font="24px">
-        NextJS Crud Application
+        NextJS CRUD Application
       </Text>
       <Show
         when={!isLoading}
