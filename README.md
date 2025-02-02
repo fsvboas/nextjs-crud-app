@@ -1,41 +1,45 @@
-## Getting Started
+<h1>
+    Next.js CRUD Application
+</h1>
 
-First, add the project dependencies:
+<h1>
+    <img src="public/preview.png">
+</h1>
+
+## 🧾 Sobre
+
+Aplicativo fictício para gestão de pessoas. O usuário pode visualizar, criar, atualizar e/ou excluir usuários, além de poder filtrar por nome, data de nascimento, telefone, cidade e estado, caso necessário.
+
+## 💻 Tecnologias utilizadas
+
+- Next.js
+- Tailwind CSS
+- TypeScript
+- Axios
+- TanStack Query
+- json-server
+- React Hook Form
+- Zod
+- date-fns
+
+## 🛠️ Como utilizar
+
+Instale as dependências do projeto:
 
 ```bash
 npm install
-# or
-yarn
-# or
-pnpm install
-# or
-bun install
 ```
 
-Second, run the fake API server:
+Inicie a API:
 
 ```bash
 npm run server
-# or
-yarn server
-# or
-pnpm server
-# or
-bun server
 ```
 
-So, run the development server:
+Inicie o projeto:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-
-
-Finally, open [http://localhost:3000](http://localhost:3000) with your browser and enjoy it!
+Por fim, abra [http://localhost:3000](http://localhost:3000) no seu navegador.
