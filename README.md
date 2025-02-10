@@ -2,11 +2,9 @@
     Next.js CRUD Application
 </h1>
 
-<img src="public/preview.png">
-
 ## 🧾 Sobre
 
-Aplicativo fictício para gestão de pessoas. O usuário pode visualizar, criar, atualizar e/ou excluir usuários, além de poder filtrar por nome, data de nascimento, telefone, cidade e estado, caso necessário.
+Aplicativo que permite gerenciar usuários de forma eficiente, oferecendo funcionalidades para visualizar, criar, atualizar e excluir perfis. Além disso, disponibiliza filtros avançados para facilitar a busca por usuários, permitindo filtrar por nome, data de nascimento, telefone, cidade e estado.
 
 ## 💻 Tecnologias utilizadas
 
