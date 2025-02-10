@@ -2,9 +2,7 @@
     Next.js CRUD Application
 </h1>
 
-<h1>
-    <img src="public/preview.png">
-</h1>
+<img src="public/preview.png">
 
 ## 🧾 Sobre
 
